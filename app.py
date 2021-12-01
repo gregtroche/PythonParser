@@ -86,6 +86,15 @@ for i in client_sheets:
     workbook = load_workbook(filename = 'C:\PythonParser\mondayAccounts\\' + i)
     info_titles, info_values, client_name = split_fields(workbook)
     name, status, date, notes = services_info(workbook)
+    
+    #add columns to each list for name and description
+    info_titles = [client_name[0], 'Info Titles'] + info_titles
+    info_values = [client_name[0], 'Info Values'] + info_values
+    name = [client_name[0], 'Service Name'] + name
+    status = [client_name[0], 'Service Status'] + status
+    date = [client_name[0], 'Date Modified'] + date
+    notes = [client_name[0], 'Notes, if any'] + notes
+
     write_values(client_name)
     write_values(info_titles, info_values)
     write_values(name, status)
